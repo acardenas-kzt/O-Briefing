@@ -22,7 +22,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
           }`}
         >
           <Award className="w-4 h-4" />
-          <span>Socios OTLC (Nuevos vs Anteriores)</span>
+          <span>Socios OTLC (Nuevos / Anteriores)</span>
         </button>
 
         <button

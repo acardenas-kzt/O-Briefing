@@ -83,7 +83,7 @@ export const TarifasView: React.FC<TarifasViewProps> = ({ data }) => {
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
               <div>
                 <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                  Tarifa de Habitaciones (MXN)
+                  TARIFA DE HABITACIONES (MXN)
                 </h3>
                 <p className="text-xs text-slate-500">Tarifas por noche según ocupación en Grand Oasis y The Pyramid</p>
               </div>
@@ -147,7 +147,7 @@ export const TarifasView: React.FC<TarifasViewProps> = ({ data }) => {
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
               <div>
                 <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                  Tarifa Ejecutiva (USD)
+                  TARIFA EJECUTIVA (USD)
                 </h3>
                 <p className="text-xs text-slate-500">Tarifas preferenciales para titulares y socios comerciales</p>
               </div>

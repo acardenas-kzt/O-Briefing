@@ -16,7 +16,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
             <Clock className="w-5 h-5 text-[#1a73e8]" />
             <div>
               <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                Horarios de Servicios Generales del Hotel
+                SERVICIOS GENERALES
               </h3>
               <p className="text-xs text-slate-500">Mesa de hospitalidad, Kids club, Spas, Gimnasio y Albercas</p>
             </div>
@@ -48,7 +48,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
         <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
           <div className="pb-3 border-b border-slate-100 mb-4">
             <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-              Tarifas de Servicios Adicionales
+              TARIFAS DE SERVICIOS ADICIONALES
             </h3>
             <p className="text-xs text-slate-500">Tenis, Room Service, Niñera, Late Check Out y Reposición</p>
           </div>
@@ -75,7 +75,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 mb-3">
               <Phone className="w-5 h-5 text-emerald-600" />
               <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                Tarifas Telefónicas desde Habitación
+                TARIFAS TELEFÓNICAS DESDE HABITACIÓN
               </h3>
             </div>
             <div className="space-y-2 text-xs">

@@ -1,0 +1,6 @@
+{
+  "name": "O-Briefing Oasis Hotels",
+  "description": "Tablero ejecutivo interactivo diario de operaciones, censo, ocupación, eventos y servicios de Grand Oasis Cancún y The Pyramid.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

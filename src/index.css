@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-200: #ced7dd;
+  --color-slate-100: #e2e9f0;
+}
+
+@layer base {
+  :root {
+    --bg: #ffffff;
+    --ink: #0f172a;
+    --accent: #0369a1;
+    --faint: #f8fafc;
+    --border: #ced7dd;
+    --text-muted: #64748b;
+  }
+
+  *, ::before, ::after {
+    border-color: #ced7dd;
+  }
+
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ink);
+    background-color: var(--bg);
+  }
+}
+
+/* Ensure all elements with border-slate-200 use #ced7dd */
+[class*="border-slate-200"] {
+  border-color: #ced7dd;
+}
+
+/* Ensure all elements with border-slate-100 (#f2f5f9) use #e2e9f0 */
+[class*="border-slate-100"] {
+  border-color: #e2e9f0;
+}
+
+.font-mono-meta {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Custom Print Optimization for PDF Export */
+@media print {
+  @page {
+    margin: 1.2cm;
+    size: auto;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+  }
+
+  header, nav, .right-panel, button, input {
+    display: none !important;
+  }
+
+  .print\:hidden,
+  [class*="print:hidden"] {
+    display: none !important;
+  }
+
+  .print\:block,
+  [class*="print:block"] {
+    display: block !important;
+  }
+
+  .print-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Page break rules for clean reports */
+  .break-before-page {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .page-break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Remove shadow and adjust borders for paper output */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+

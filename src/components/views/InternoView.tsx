@@ -10,7 +10,7 @@ export const InternoView: React.FC<InternoViewProps> = ({ data }) => {
   return (
     <div className="space-y-6">
       {/* 1. Misión y Visión */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6">
         {/* Misión */}
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-6 flex flex-col justify-between">
           <div>
@@ -59,7 +59,7 @@ export const InternoView: React.FC<InternoViewProps> = ({ data }) => {
       </div>
 
       {/* 2. Valores y Mandamientos de Cultura */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6">
         {/* Valores */}
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-6">
           <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100 mb-4">

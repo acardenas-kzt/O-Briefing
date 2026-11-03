@@ -201,7 +201,7 @@ export const TarifasView: React.FC<TarifasViewProps> = ({ data }) => {
       {/* 2. Upgrades & Day Pass */}
       {activeSection === 'upgrades' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-6">
             {/* Precios Up Grade x Noche */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
               <div className="pb-3 border-b border-slate-100 mb-4">

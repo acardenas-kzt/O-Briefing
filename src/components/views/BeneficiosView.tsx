@@ -12,7 +12,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
   return (
     <div className="space-y-6">
       {/* Category selector */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-3 flex flex-wrap items-center gap-2">
+      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-3 flex flex-wrap items-center gap-2 print:hidden">
         <button
           onClick={() => setActiveCategory('otlc')}
           className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
@@ -51,8 +51,8 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
       </div>
 
       {/* 1. OTLC Members */}
-      {activeCategory === 'otlc' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className={activeCategory === 'otlc' ? 'block' : 'hidden print:block'}>
+        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6">
           {/* Socios Nuevos Oasis Leisure Club */}
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between">
             <div>
@@ -105,18 +105,18 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* 2. ALG & PYRMS */}
-      {activeCategory === 'alg' && (
+      <div className={activeCategory === 'alg' ? 'block' : 'hidden print:block'}>
         <div className="space-y-6">
           {/* Fila superior: 2/3 para Huéspedes ALG (Grand Oasis y The Pyramid) y 1/3 para Master Suites PYRMS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 gap-6 items-stretch">
             {/* Contenedor unificado 2/3: Huéspedes ALG (Grand Oasis y The Pyramid juntos) */}
-            <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between h-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-slate-100 h-full">
+            <div className="lg:col-span-2 print:col-span-2 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6 md:divide-x print:divide-x md:divide-slate-100 print:divide-slate-100 h-full">
                 {/* Beneficios Huéspedes ALG - Grand Oasis */}
-                <div className="pr-0 md:pr-4 flex flex-col">
+                <div className="pr-0 md:pr-4 print:pr-4 flex flex-col">
                   <div className="pb-3 border-b border-slate-100 mb-4">
                     <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
                       Beneficios Huéspedes ALG - Grand Oasis
@@ -133,7 +133,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
                 </div>
 
                 {/* Beneficios Huéspedes ALG - The Pyramid */}
-                <div className="pt-4 md:pt-0 md:pl-6 border-t md:border-t-0 border-slate-100 flex flex-col">
+                <div className="pt-4 md:pt-0 md:pl-6 print:pt-0 print:pl-6 border-t md:border-t-0 print:border-t-0 border-slate-100 flex flex-col">
                   <div className="pb-3 border-b border-slate-100 mb-4">
                     <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
                       Beneficios Huéspedes ALG - The Pyramid
@@ -152,7 +152,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
             </div>
 
             {/* Contenedor 1/3: Pyramid Master Suites en formato de lista */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 print:col-span-1">
               <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 h-full flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 pb-3 border-b border-slate-100 mb-4">
@@ -175,7 +175,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
           </div>
 
           {/* Mercado Americano & Tripulaciones (integrado debajo de ALG & Master Suites) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6 pt-2">
             {/* Mercado Americano */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
               <div className="pb-3 border-b border-slate-100 mb-4">
@@ -222,10 +222,10 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* 3. Minibar */}
-      {activeCategory === 'minibar' && (
+      <div className={activeCategory === 'minibar' ? 'block' : 'hidden print:block'}>
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
             <div>
@@ -239,7 +239,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-slate-200/80 bg-slate-50/50">
               <span className="text-xs font-bold text-slate-900 block mb-2">Grand Oasis Cancún</span>
               <p className="text-xs text-slate-600 leading-relaxed">{data.beneficios.minibarGOC}</p>
@@ -251,7 +251,7 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

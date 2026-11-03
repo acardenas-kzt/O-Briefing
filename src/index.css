@@ -40,17 +40,17 @@
   font-family: 'Space Mono', monospace;
 }
 
-/* Custom Print Optimization for PDF Export */
+/* Custom Print Optimization for PDF Export & Physical Printing */
 @media print {
   @page {
-    margin: 1.2cm;
+    margin: 1cm;
     size: auto;
   }
 
   body {
     background-color: #ffffff !important;
     color: #000000 !important;
-    font-size: 10pt !important;
+    font-size: 9.5pt !important;
   }
 
   header, nav, .right-panel, button, input {
@@ -89,6 +89,163 @@
   * {
     box-shadow: none !important;
     text-shadow: none !important;
+  }
+
+  /* ========================================================
+     DESKTOP GRID & ROW LAYOUT ENFORCEMENT FOR PRINTING
+     Ensures that printed output follows the desktop computer layout:
+     divs that are side-by-side in rows remain in rows when printed!
+     ======================================================== */
+  
+  .grid,
+  .print-section-content .grid {
+    display: grid !important;
+  }
+
+  /* 3-column rows (Resumen cards, Censo cards, OTLC 3 cols, VIPs 3 cols, Beneficios 3 cols) */
+  [class*="md:grid-cols-3"],
+  [class*="lg:grid-cols-3"],
+  .print\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* 2-column rows (Visitas/Celebrando, OTLC nuevos/anteriores, Beneficios subgrids, Misión/Visión, etc.) */
+  [class*="md:grid-cols-2"],
+  [class*="lg:grid-cols-2"],
+  .print\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* 4-column rows (Servicios generales, etc.) */
+  [class*="lg:grid-cols-4"],
+  .print\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  /* 12-column grid system */
+  [class*="lg:grid-cols-12"],
+  .print\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+
+  /* Column spans */
+  [class*="lg:col-span-1"],
+  .print\:col-span-1 {
+    grid-column: span 1 / span 1 !important;
+  }
+
+  [class*="lg:col-span-2"],
+  [class*="md:col-span-2"],
+  .print\:col-span-2 {
+    grid-column: span 2 / span 2 !important;
+  }
+
+  [class*="lg:col-span-3"],
+  .print\:col-span-3 {
+    grid-column: span 3 / span 3 !important;
+  }
+
+  [class*="lg:col-span-4"],
+  .print\:col-span-4 {
+    grid-column: span 4 / span 4 !important;
+  }
+
+  [class*="lg:col-span-5"],
+  .print\:col-span-5 {
+    grid-column: span 5 / span 5 !important;
+  }
+
+  [class*="lg:col-span-6"],
+  .print\:col-span-6 {
+    grid-column: span 6 / span 6 !important;
+  }
+
+  [class*="lg:col-span-7"],
+  .print\:col-span-7 {
+    grid-column: span 7 / span 7 !important;
+  }
+
+  [class*="lg:col-span-8"],
+  .print\:col-span-8 {
+    grid-column: span 8 / span 8 !important;
+  }
+
+  [class*="lg:col-span-12"],
+  .print\:col-span-12 {
+    grid-column: span 12 / span 12 !important;
+  }
+
+  /* Flex row directions (keep row direction in print) */
+  [class*="sm:flex-row"],
+  [class*="md:flex-row"],
+  [class*="lg:flex-row"],
+  .print\:flex-row {
+    flex-direction: row !important;
+  }
+
+  /* Remove mobile top border and add column separation for multi-column layouts */
+  [class*="lg:divide-y-0"] > :not([hidden]) ~ :not([hidden]),
+  [class*="md:divide-y-0"] > :not([hidden]) ~ :not([hidden]) {
+    border-top-width: 0px !important;
+  }
+
+  [class*="md:divide-x"] > :not([hidden]) ~ :not([hidden]),
+  [class*="lg:divide-x"] > :not([hidden]) ~ :not([hidden]) {
+    border-left-width: 1px !important;
+  }
+
+  /* Clear top padding that was added for mobile stacked layout */
+  [class*="lg:pt-0"],
+  [class*="md:pt-0"] {
+    padding-top: 0px !important;
+  }
+
+  [class*="lg:pl-8"],
+  [class*="lg:pl-6"] {
+    padding-left: 1.25rem !important;
+  }
+
+  [class*="md:pl-6"] {
+    padding-left: 1rem !important;
+  }
+
+  [class*="md:pr-4"] {
+    padding-right: 1rem !important;
+  }
+
+  [class*="border-t"][class*="md:border-t-0"] {
+    border-top-width: 0px !important;
+  }
+
+  /* Prevent cards and tables from breaking awkwardly across pages */
+  .rounded-2xl,
+  .rounded-xl,
+  tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Compact spacing for print */
+  .gap-6 {
+    gap: 0.85rem !important;
+  }
+
+  .gap-5 {
+    gap: 0.75rem !important;
+  }
+
+  .p-5 {
+    padding: 0.85rem !important;
+  }
+
+  .p-6 {
+    padding: 1rem !important;
+  }
+
+  /* Ensure text doesn't get hidden behind scroll areas when printing */
+  [class*="max-h-"] {
+    max-height: none !important;
+    overflow: visible !important;
   }
 }
 

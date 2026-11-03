@@ -19,7 +19,7 @@ export const ResumenEjecutivoView: React.FC<ResumenEjecutivoViewProps> = ({ data
   return (
     <div className="space-y-6">
       {/* 3 Divs in a Single Row, with AUDITORIA DE CIERRE first */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-[40px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-5 mb-[40px] print:mb-6">
         {/* 1. AUDITORÍA CIERRE ANTERIOR (Al principio) */}
         <div className="p-5 bg-white border border-slate-200 rounded-xl flex flex-col justify-between shadow-xs">
           <div>

@@ -150,7 +150,7 @@ export const CentrosConsumoView: React.FC<CentrosConsumoViewProps> = ({ data }) 
 
       {/* Main Container: Column layout with side-by-side or stacked tables */}
       <div className={`grid gap-6 items-start ${
-        activeType === 'all' ? 'grid-cols-1 2xl:grid-cols-2' : 'grid-cols-1'
+        activeType === 'all' ? 'grid-cols-1 2xl:grid-cols-2 print:grid-cols-2' : 'grid-cols-1'
       }`}>
         {/* COLUMN 1: RESTAURANTES TABLE */}
         {showRestaurantes && (

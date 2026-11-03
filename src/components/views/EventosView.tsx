@@ -85,9 +85,9 @@ export const EventosView: React.FC<EventosViewProps> = ({ data }) => {
       </div>
 
       {/* Main Grid: Actividades en 2 secciones en lista + Barra lateral para Shows */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 print:grid-cols-12 gap-6 items-start">
         {/* Columna Principal: Actividades de Hoy y Actividades de Mañana (8 cols) */}
-        <div className="lg:col-span-8 space-y-6">
+        <div className="lg:col-span-8 print:col-span-8 space-y-6">
           {/* 1. SECCIÓN: Actividades de Hoy en forma de lista */}
           <div className="bg-white rounded-2xl border border-[#ced7dd] shadow-2xs p-5">
             <div className="flex items-center justify-between pb-3 border-b border-[#e2e9f0] mb-4">
@@ -216,7 +216,7 @@ export const EventosView: React.FC<EventosViewProps> = ({ data }) => {
         </div>
 
         {/* Columna Lateral (Barra al lado): Shows de Entretenimiento (4 cols) */}
-        <div className="lg:col-span-4 sticky top-6">
+        <div className="lg:col-span-4 print:col-span-4 sticky top-6 print:static">
           <div className="bg-white rounded-2xl border border-[#ced7dd] shadow-2xs p-5">
             <div className="flex items-center justify-between pb-3 border-b border-purple-100 mb-4">
               <div className="flex items-center gap-2.5">

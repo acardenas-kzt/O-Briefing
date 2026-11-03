@@ -26,7 +26,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-3">
           {data.servicios.generales.map((serv, idx) => (
             <div key={idx} className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
               <div>
@@ -43,9 +43,9 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
       </div>
 
       {/* 2. Tarifas de Servicios y Asistencia Médica */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 print:grid-cols-12 gap-6">
         {/* Tarifas de Servicios Adicionales */}
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
+        <div className="lg:col-span-7 print:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
           <div className="pb-3 border-b border-slate-100 mb-4">
             <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
               TARIFAS DE SERVICIOS ADICIONALES
@@ -69,7 +69,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
         </div>
 
         {/* Llamadas Telefónicas y Asistencia Médica */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 print:col-span-5 space-y-6">
           {/* Llamadas telefónicas */}
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 mb-3">
@@ -121,7 +121,7 @@ export const ServiciosView: React.FC<ServiciosViewProps> = ({ data }) => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-4">
           {data.servicios.spaPromos.map((spa, idx) => (
             <div
               key={idx}

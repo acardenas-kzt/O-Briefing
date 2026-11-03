@@ -147,7 +147,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
   return (
     <div className="space-y-6">
       {/* 1. Header Metrics: Cierre, Previsiones y Huéspedes en Casa */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-5">
         {/* Cierre del Día */}
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
@@ -347,7 +347,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
           </div>
 
           {/* Cuerpo en 3 Columnas Distribuidas */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-white gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x print:divide-y-0 print:divide-x divide-white gap-6 lg:gap-8 print:gap-6">
             {/* Columna 1: Socios Llegando (E:32), Socios Nuevos (E:34), Socios Saliendo (E:36) */}
             <div className="space-y-5 border-white">
               {/* 1.1 Socios Llegando */}
@@ -532,7 +532,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
 
           {/* Lists layout */}
           {vipFilter === 'all' ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-white gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x print:divide-y-0 print:divide-x divide-white gap-6 lg:gap-8 print:gap-6">
               {/* Col 1: VIPs Llegando */}
               <div className="border-white">
                 <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
@@ -614,7 +614,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
       </div>
 
       {/* 4. Visitas de Inspección & Huéspedes Celebrando */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6">
         {/* Visitas de Inspección */}
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
           <div className="flex items-center gap-2 pb-3 border-b border-slate-100 mb-4">

@@ -81,27 +81,35 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
   const filteredCasaCol1 = otlcSearch.trim() ? filteredCasaFull.slice(0, casaMidpoint) : casaCol1;
   const filteredCasaCol2 = otlcSearch.trim() ? filteredCasaFull.slice(casaMidpoint) : casaCol2;
 
-  // Reusable centered row renderer for socios (w-[350px] h-[30px])
-  const renderSocioRow = (socio: { nombre: string; habitacion?: string; fecha?: string }, idx: number) => (
-    <div
-      key={idx}
-      className="w-[350px] max-w-full h-[30px] mx-auto flex items-center justify-between text-xs px-3.5 hover:bg-amber-50/50 rounded-xl transition-all group border border-slate-100/90 hover:border-amber-200/80 bg-white shadow-2xs hover:shadow-xs"
-    >
-      <span className="font-semibold text-slate-800 truncate pr-2.5 flex-1 text-left group-hover:text-amber-950 transition-colors">
-        {socio.nombre}
-      </span>
-      <span className="px-2.5 py-0.5 rounded-md bg-slate-100 font-mono font-bold text-slate-700 shrink-0 text-center text-[11px] min-w-[72px] border border-slate-200/60">
-        {socio.habitacion
-          ? socio.habitacion.toUpperCase().startsWith('HAB')
-            ? socio.habitacion
-            : `HAB.${socio.habitacion}`
-          : '-'}
-      </span>
-      <span className="text-slate-500 font-mono text-[11px] font-semibold shrink-0 text-right w-14 pl-1">
-        {socio.fecha || '-'}
-      </span>
-    </div>
-  );
+  // Reusable compact list row renderer for socios (formato lista comprimida, sin cuadros)
+  const renderSocioRow = (socio: { nombre: string; habitacion?: string; fecha?: string }, idx: number) => {
+    const formattedHab = socio.habitacion
+      ? socio.habitacion.toUpperCase().startsWith('HAB')
+        ? socio.habitacion
+        : `HAB.${socio.habitacion}`
+      : '-';
+
+    return (
+      <li
+        key={idx}
+        className="flex items-center justify-between text-xs px-2 hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
+      >
+        <div className="flex items-center min-w-0 flex-1 pr-2">
+          <span className="font-semibold text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={socio.nombre}>
+            {socio.nombre}
+          </span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="font-mono font-bold text-slate-700 bg-[#eaeff4] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
+            {formattedHab}
+          </span>
+          <span className="text-slate-400 font-mono text-[11px] font-medium w-12 text-right">
+            {socio.fecha || '-'}
+          </span>
+        </div>
+      </li>
+    );
+  };
 
   // Reusable centered row renderer for Huéspedes VIP (w-[350px] h-[30px])
   const renderVipRow = (
@@ -355,11 +363,11 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
           {/* Cuerpo en 3 Columnas Distribuidas */}
           <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 gap-6 lg:gap-8">
             {/* Columna 1: Socios Llegando (E:32), Socios Nuevos (E:34), Socios Saliendo (E:36) */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* 1.1 Socios Llegando */}
               <div>
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
-                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Google_Sans',sans-serif]">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
                     Socios Llegando
                   </span>
@@ -367,21 +375,21 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
                     {filteredLlegando.length}
                   </span>
                 </div>
-                <div className="space-y-1.5">
+                <ul className="divide-y divide-slate-100/70">
                   {filteredLlegando.length > 0 ? (
                     filteredLlegando.map(renderSocioRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic text-center py-2.5 w-[350px] max-w-full mx-auto">
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
                       {otlcSearch ? 'Sin resultados para la búsqueda' : 'Sin socios llegando'}
-                    </p>
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
 
               {/* 1.2 Socios Nuevos */}
               <div>
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
-                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Google_Sans',sans-serif]">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-indigo-500 inline-block" />
                     Socios Nuevos
                   </span>
@@ -389,21 +397,21 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
                     {filteredNuevos.length}
                   </span>
                 </div>
-                <div className="space-y-1.5">
+                <ul className="divide-y divide-slate-100/70">
                   {filteredNuevos.length > 0 ? (
                     filteredNuevos.map(renderSocioRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic text-center py-2.5 w-[350px] max-w-full mx-auto">
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
                       {otlcSearch ? 'Sin resultados para la búsqueda' : 'Sin socios nuevos'}
-                    </p>
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
 
               {/* 1.3 Socios Saliendo */}
               <div>
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
-                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Google_Sans',sans-serif]">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" />
                     Socios Saliendo
                   </span>
@@ -411,22 +419,22 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
                     {filteredSaliendo.length}
                   </span>
                 </div>
-                <div className="space-y-1.5">
+                <ul className="divide-y divide-slate-100/70">
                   {filteredSaliendo.length > 0 ? (
                     filteredSaliendo.map(renderSocioRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic text-center py-2.5 w-[350px] max-w-full mx-auto">
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
                       {otlcSearch ? 'Sin resultados para la búsqueda' : 'Sin socios saliendo'}
-                    </p>
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
             </div>
 
             {/* Columna 2: Socios en Casa (Celda G:32) */}
             <div className="pt-6 lg:pt-0 lg:pl-8">
-              <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
-                <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Google_Sans',sans-serif]">
+              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                   <span className="w-2 h-2 rounded-full bg-[#0369a1] inline-block" />
                   Socios en Casa
                 </span>
@@ -434,21 +442,21 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
                   {filteredCasaCol1.length}
                 </span>
               </div>
-              <div className="space-y-1.5">
+              <ul className="divide-y divide-slate-100/70">
                 {filteredCasaCol1.length > 0 ? (
                   filteredCasaCol1.map(renderSocioRow)
                 ) : (
-                  <p className="text-xs text-slate-400 italic text-center py-2.5 w-[350px] max-w-full mx-auto">
+                  <li className="text-xs text-slate-400 italic text-center py-2 list-none">
                     {otlcSearch ? 'Sin resultados para la búsqueda' : 'Sin socios en casa'}
-                  </p>
+                  </li>
                 )}
-              </div>
+              </ul>
             </div>
 
             {/* Columna 3: Socios en Casa (Celda I:32) */}
             <div className="pt-6 lg:pt-0 lg:pl-8">
-              <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
-                <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Google_Sans',sans-serif]">
+              <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                   <span className="w-2 h-2 rounded-full bg-[#0369a1] inline-block" />
                   Socios en Casa
                 </span>
@@ -456,15 +464,15 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
                   {filteredCasaCol2.length}
                 </span>
               </div>
-              <div className="space-y-1.5">
+              <ul className="divide-y divide-slate-100/70">
                 {filteredCasaCol2.length > 0 ? (
                   filteredCasaCol2.map(renderSocioRow)
                 ) : (
-                  <p className="text-xs text-slate-400 italic text-center py-2.5 w-[350px] max-w-full mx-auto">
+                  <li className="text-xs text-slate-400 italic text-center py-2 list-none">
                     {otlcSearch ? 'Sin resultados para la búsqueda' : 'Sin socios en casa'}
-                  </p>
+                  </li>
                 )}
-              </div>
+              </ul>
             </div>
           </div>
         </div>

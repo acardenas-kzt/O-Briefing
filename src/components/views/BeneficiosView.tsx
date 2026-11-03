@@ -112,67 +112,63 @@ export const BeneficiosView: React.FC<BeneficiosViewProps> = ({ data }) => {
         <div className="space-y-6">
           {/* Fila superior: 2/3 para Huéspedes ALG (Grand Oasis y The Pyramid) y 1/3 para Master Suites PYRMS */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-            {/* Contenedor 2/3: Huéspedes ALG */}
-            <div className="lg:col-span-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+            {/* Contenedor unificado 2/3: Huéspedes ALG (Grand Oasis y The Pyramid juntos) */}
+            <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-slate-100 h-full">
                 {/* Beneficios Huéspedes ALG - Grand Oasis */}
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between">
-                  <div>
-                    <div className="pb-3 border-b border-slate-100 mb-4">
-                      <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                        Beneficios Huéspedes ALG - Grand Oasis
-                      </h4>
-                    </div>
-                    <ul className="text-xs text-slate-700">
-                      {data.beneficios.algGOC.map((ben, idx) => (
-                        <li key={idx} className="flex items-start gap-2 px-[7px] py-[5px] mb-[5px] last:mb-0 rounded-lg hover:bg-slate-50">
-                          <CheckCircle2 className="w-4 h-4 text-[#1a73e8] shrink-0 mt-0" />
-                          <span>{ben}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="pr-0 md:pr-4 flex flex-col">
+                  <div className="pb-3 border-b border-slate-100 mb-4">
+                    <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
+                      Beneficios Huéspedes ALG - Grand Oasis
+                    </h4>
                   </div>
+                  <ul className="text-xs text-slate-700">
+                    {data.beneficios.algGOC.map((ben, idx) => (
+                      <li key={idx} className="flex items-start gap-2 px-[7px] py-[5px] mb-[5px] last:mb-0 rounded-lg hover:bg-slate-50">
+                        <CheckCircle2 className="w-4 h-4 text-[#1a73e8] shrink-0 mt-0" />
+                        <span>{ben}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* Beneficios Huéspedes ALG - The Pyramid */}
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 flex flex-col justify-between">
-                  <div>
-                    <div className="pb-3 border-b border-slate-100 mb-4">
-                      <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                        Beneficios Huéspedes ALG - The Pyramid
-                      </h4>
-                    </div>
-                    <ul className="text-xs text-slate-700">
-                      {data.beneficios.algPYR.map((ben, idx) => (
-                        <li key={idx} className="flex items-start gap-2 px-[7px] py-[5px] mb-[5px] last:mb-0 rounded-lg hover:bg-slate-50">
-                          <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0" />
-                          <span>{ben}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="pt-4 md:pt-0 md:pl-6 border-t md:border-t-0 border-slate-100 flex flex-col">
+                  <div className="pb-3 border-b border-slate-100 mb-4">
+                    <h4 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
+                      Beneficios Huéspedes ALG - The Pyramid
+                    </h4>
                   </div>
+                  <ul className="text-xs text-slate-700">
+                    {data.beneficios.algPYR.map((ben, idx) => (
+                      <li key={idx} className="flex items-start gap-2 px-[7px] py-[5px] mb-[5px] last:mb-0 rounded-lg hover:bg-slate-50">
+                        <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0" />
+                        <span>{ben}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
 
-            {/* Contenedor 1/3: Pyramid Master Suites */}
+            {/* Contenedor 1/3: Pyramid Master Suites en formato de lista */}
             <div className="lg:col-span-1">
-              <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-white rounded-2xl border border-amber-200/80 p-5 h-full flex flex-col justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5 h-full flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 pb-3 border-b border-amber-200/60 mb-4">
-                    <Sparkles className="w-5 h-5 text-amber-600 shrink-0" />
+                  <div className="flex items-center gap-2 pb-3 border-b border-slate-100 mb-4">
+                    <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
                     <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
                       Beneficios Pyramid Master Suite (PYRMS)
                     </h3>
                   </div>
-                  <div className="space-y-2">
+                  <ul className="text-xs text-slate-700">
                     {data.beneficios.pyrms.map((ben, idx) => (
-                      <div key={idx} className="p-2.5 rounded-xl bg-white/90 border border-amber-200/0 shadow-2xs text-xs font-medium text-slate-800 flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <li key={idx} className="flex items-start gap-2 px-[7px] py-[5px] mb-[5px] last:mb-0 rounded-lg hover:bg-slate-50">
+                        <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0" />
                         <span>{ben}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>

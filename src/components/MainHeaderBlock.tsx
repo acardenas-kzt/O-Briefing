@@ -87,12 +87,12 @@ export const MainHeaderBlock: React.FC<MainHeaderBlockProps> = ({
           <span>{data.fecha !== 'N/C' ? data.fecha : 'Viernes 28 de agosto del 2026'}</span>
         </div>
 
-        {/* Action Buttons: Month, Actualizar (icon only), and Search with unified height (30px) */}
-        <div className="flex items-center gap-2 h-[30px]">
+        {/* Action Buttons: Month, Actualizar (icon only), and Search with unified height (30px) - Hidden on mobile */}
+        <div className="hidden sm:flex items-center gap-2 h-[30px]">
           {onOpenHistory && (
             <button
               onClick={onOpenHistory}
-              className="h-[30px] flex items-center justify-center gap-1.5 px-2.5 rounded-md bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer box-border"
+              className="hidden sm:flex h-[30px] items-center justify-center gap-1.5 px-2.5 rounded-md bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer box-border"
               title="Historial de meses cargados"
             >
               <Calendar className="w-3.5 h-3.5 text-[#0369a1]" />
@@ -104,7 +104,7 @@ export const MainHeaderBlock: React.FC<MainHeaderBlockProps> = ({
             <button
               onClick={onRefresh}
               disabled={isRefreshing}
-              className={`w-[30px] h-[30px] flex items-center justify-center rounded-md border text-xs transition-all cursor-pointer box-border ${
+              className={`hidden sm:flex w-[30px] h-[30px] items-center justify-center rounded-md border text-xs transition-all cursor-pointer box-border ${
                 isRefreshing
                   ? 'bg-sky-50 border-sky-300 text-[#0369a1]'
                   : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 active:bg-slate-200'
@@ -119,7 +119,7 @@ export const MainHeaderBlock: React.FC<MainHeaderBlockProps> = ({
           {onOpenSearch && (
             <button
               onClick={onOpenSearch}
-              className="w-[151px] h-[30px] flex items-center justify-between gap-1.5 px-2.5 rounded-md border border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-mono cursor-pointer box-border"
+              className="hidden sm:flex w-[151px] h-[30px] items-center justify-between gap-1.5 px-2.5 rounded-md border border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-xs font-mono cursor-pointer box-border"
               title="Buscar (⌘K)"
             >
               <span className="flex items-center gap-1.5 truncate">

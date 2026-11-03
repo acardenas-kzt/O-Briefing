@@ -92,15 +92,15 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
     return (
       <li
         key={idx}
-        className="flex items-center justify-between text-xs px-2 hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
+        className="flex items-center justify-between text-xs px-[15px] font-normal hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
       >
         <div className="flex items-center min-w-0 flex-1 pr-2">
-          <span className="font-semibold text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={socio.nombre}>
+          <span className="font-normal text-[11px] text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={socio.nombre}>
             {socio.nombre}
           </span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="font-mono font-bold text-slate-700 bg-[#eaeff4] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
+          <span className="font-mono font-bold text-slate-700 bg-[#f7fafc] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
             {formattedHab}
           </span>
           <span className="text-slate-400 font-mono text-[11px] font-medium w-12 text-right">
@@ -111,29 +111,11 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
     );
   };
 
-  // Reusable centered row renderer for Huéspedes VIP (w-[350px] h-[30px])
+  // Reusable compact list row renderer for Huéspedes VIP (igual a Socios OTLC)
   const renderVipRow = (
     vip: { nombre: string; habitacion?: string; fecha?: string },
-    idx: number,
-    colorTheme?: 'emerald' | 'sky' | 'rose'
+    idx: number
   ) => {
-    let hoverBg = 'hover:bg-slate-50';
-    let hoverBorder = 'hover:border-slate-300';
-    let habBadgeBg = 'bg-slate-100 text-slate-700 border-slate-200/60';
-    if (colorTheme === 'emerald') {
-      hoverBg = 'hover:bg-emerald-50/50';
-      hoverBorder = 'hover:border-emerald-200/80';
-      habBadgeBg = 'bg-emerald-50 text-emerald-800 border-emerald-200/60';
-    } else if (colorTheme === 'sky') {
-      hoverBg = 'hover:bg-sky-50/50';
-      hoverBorder = 'hover:border-sky-200/80';
-      habBadgeBg = 'bg-sky-50 text-[#0369a1] border-sky-200/60';
-    } else if (colorTheme === 'rose') {
-      hoverBg = 'hover:bg-rose-50/50';
-      hoverBorder = 'hover:border-rose-200/80';
-      habBadgeBg = 'bg-rose-50 text-rose-800 border-rose-200/60';
-    }
-
     const formattedHab = vip.habitacion
       ? vip.habitacion.toUpperCase().startsWith('HAB')
         ? vip.habitacion
@@ -141,20 +123,24 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
       : '-';
 
     return (
-      <div
+      <li
         key={idx}
-        className={`w-[350px] max-w-full h-[30px] mx-auto flex items-center justify-between text-xs px-3.5 ${hoverBg} rounded-xl transition-all group border border-slate-100/90 ${hoverBorder} bg-white shadow-2xs hover:shadow-xs`}
+        className="flex items-center justify-between text-xs px-[15px] font-normal hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
       >
-        <span className="font-semibold text-slate-800 truncate pr-2.5 flex-1 text-left" title={vip.nombre}>
-          {vip.nombre}
-        </span>
-        <span className={`px-2.5 py-0.5 rounded-md font-mono font-bold shrink-0 text-center text-[11px] min-w-[72px] border ${habBadgeBg}`}>
-          {formattedHab}
-        </span>
-        <span className="text-slate-500 font-mono text-[11px] font-semibold shrink-0 text-right w-14 pl-1">
-          {vip.fecha || '-'}
-        </span>
-      </div>
+        <div className="flex items-center min-w-0 flex-1 pr-2">
+          <span className="font-normal text-[11px] text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={vip.nombre}>
+            {vip.nombre}
+          </span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="font-mono font-bold text-slate-700 bg-[#f7fafc] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
+            {formattedHab}
+          </span>
+          <span className="text-slate-400 font-mono text-[11px] font-medium w-12 text-right">
+            {vip.fecha || '-'}
+          </span>
+        </div>
+      </li>
     );
   };
 
@@ -361,9 +347,9 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
           </div>
 
           {/* Cuerpo en 3 Columnas Distribuidas */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-white gap-6 lg:gap-8">
             {/* Columna 1: Socios Llegando (E:32), Socios Nuevos (E:34), Socios Saliendo (E:36) */}
-            <div className="space-y-5">
+            <div className="space-y-5 border-white">
               {/* 1.1 Socios Llegando */}
               <div>
                 <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
@@ -432,7 +418,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
             </div>
 
             {/* Columna 2: Socios en Casa (Celda G:32) */}
-            <div className="pt-6 lg:pt-0 lg:pl-8">
+            <div className="pt-6 lg:pt-0 lg:pl-8 border-white">
               <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
                 <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                   <span className="w-2 h-2 rounded-full bg-[#0369a1] inline-block" />
@@ -454,7 +440,7 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
             </div>
 
             {/* Columna 3: Socios en Casa (Celda I:32) */}
-            <div className="pt-6 lg:pt-0 lg:pl-8">
+            <div className="pt-6 lg:pt-0 lg:pl-8 border-white">
               <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
                 <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                   <span className="w-2 h-2 rounded-full bg-[#0369a1] inline-block" />
@@ -546,73 +532,83 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
 
           {/* Lists layout */}
           {vipFilter === 'all' ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-white gap-6 lg:gap-8">
               {/* Col 1: VIPs Llegando */}
-              <div className="bg-emerald-50/30 border border-emerald-100 rounded-xl p-3.5">
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-emerald-200/60">
-                  <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
+              <div className="border-white">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
                     VIPs Llegando
                   </span>
-                  <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full font-mono">
                     {vipsLists.llegando.length}
                   </span>
                 </div>
-                <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
+                <ul className="divide-y divide-slate-100/70 max-h-[380px] overflow-y-auto">
                   {vipsLists.llegando.length > 0 ? (
-                    vipsLists.llegando.map((vip, idx) => renderVipRow(vip, idx, 'emerald'))
+                    vipsLists.llegando.map(renderVipRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic py-2 text-center w-[350px] max-w-full mx-auto">Sin registros</p>
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
+                      {vipSearch ? 'Sin resultados para la búsqueda' : 'Sin VIPs llegando'}
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
 
               {/* Col 2: VIPs En Casa */}
-              <div className="bg-sky-50/30 border border-sky-100 rounded-xl p-3.5">
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-sky-200/60">
-                  <span className="text-[11px] font-bold text-[#0369a1] uppercase tracking-wider flex items-center gap-1.5">
+              <div className="pt-6 lg:pt-0 lg:pl-8 border-white">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-[#0369a1] inline-block" />
                     VIPs En Casa
                   </span>
-                  <span className="text-[10px] font-bold text-[#0369a1] bg-sky-100 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-[#0369a1] bg-sky-100 px-2 py-0.5 rounded-full font-mono">
                     {vipsLists.enCasa.length}
                   </span>
                 </div>
-                <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
+                <ul className="divide-y divide-slate-100/70 max-h-[380px] overflow-y-auto">
                   {vipsLists.enCasa.length > 0 ? (
-                    vipsLists.enCasa.map((vip, idx) => renderVipRow(vip, idx, 'sky'))
+                    vipsLists.enCasa.map(renderVipRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic py-2 text-center w-[350px] max-w-full mx-auto">Sin registros</p>
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
+                      {vipSearch ? 'Sin resultados para la búsqueda' : 'Sin VIPs en casa'}
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
 
               {/* Col 3: VIPs Saliendo */}
-              <div className="bg-rose-50/30 border border-rose-100 rounded-xl p-3.5">
-                <div className="w-[350px] max-w-full mx-auto flex items-center justify-between pb-2 mb-2.5 border-b border-rose-200/60">
-                  <span className="text-[11px] font-bold text-rose-800 uppercase tracking-wider flex items-center gap-1.5">
+              <div className="pt-6 lg:pt-0 lg:pl-8 border-white">
+                <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-100">
+                  <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Montserrat',sans-serif]">
                     <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" />
                     VIPs Saliendo
                   </span>
-                  <span className="text-[10px] font-bold text-rose-800 bg-rose-100 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full font-mono">
                     {vipsLists.saliendo.length}
                   </span>
                 </div>
-                <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
+                <ul className="divide-y divide-slate-100/70 max-h-[380px] overflow-y-auto">
                   {vipsLists.saliendo.length > 0 ? (
-                    vipsLists.saliendo.map((vip, idx) => renderVipRow(vip, idx, 'rose'))
+                    vipsLists.saliendo.map(renderVipRow)
                   ) : (
-                    <p className="text-xs text-slate-400 italic py-2 text-center w-[350px] max-w-full mx-auto">Sin registros</p>
+                    <li className="text-xs text-slate-400 italic text-center py-2 list-none">
+                      {vipSearch ? 'Sin resultados para la búsqueda' : 'Sin VIPs saliendo'}
+                    </li>
                   )}
-                </div>
+                </ul>
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[400px] overflow-y-auto pr-1">
-              {(vipFilter === 'llegando' ? vipsLists.llegando : vipFilter === 'enCasa' ? vipsLists.enCasa : vipsLists.saliendo).map((vip, idx) =>
-                renderVipRow(vip, idx, vipFilter === 'llegando' ? 'emerald' : vipFilter === 'enCasa' ? 'sky' : 'rose')
+            <ul className="divide-y divide-slate-100/70 max-h-[400px] overflow-y-auto">
+              {(vipFilter === 'llegando' ? vipsLists.llegando : vipFilter === 'enCasa' ? vipsLists.enCasa : vipsLists.saliendo).length > 0 ? (
+                (vipFilter === 'llegando' ? vipsLists.llegando : vipFilter === 'enCasa' ? vipsLists.enCasa : vipsLists.saliendo).map(renderVipRow)
+              ) : (
+                <li className="text-xs text-slate-400 italic text-center py-2 list-none">
+                  {vipSearch ? 'Sin resultados para la búsqueda' : 'Sin registros'}
+                </li>
               )}
-            </div>
+            </ul>
           )}
         </div>
       </div>
@@ -628,26 +624,30 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
             </h3>
           </div>
           {data.visitasInspeccion.length > 0 ? (
-            <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
+            <ul className="divide-y divide-slate-100/70 max-h-[380px] overflow-y-auto">
               {data.visitasInspeccion.map((visita, idx) => (
-                <div
+                <li
                   key={idx}
-                  className="w-[350px] max-w-full h-[30px] mx-auto flex items-center justify-between text-xs px-3.5 hover:bg-emerald-50/50 rounded-xl transition-all group border border-slate-100/90 hover:border-emerald-200/80 bg-white shadow-2xs hover:shadow-xs"
+                  className="flex items-center justify-between text-xs px-[15px] font-normal hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
                 >
-                  <span className="font-semibold text-slate-800 truncate pr-2.5 flex-1 text-left" title={visita.nombre}>
-                    {visita.nombre}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 font-mono font-bold text-emerald-800 shrink-0 text-center text-[11px] min-w-[72px] border border-emerald-200/60">
-                    {visita.pax || 'INSP'}
-                  </span>
-                  <span className="text-emerald-700 font-mono text-[11px] font-semibold shrink-0 text-right w-14 pl-1">
-                    FAM TRIP
-                  </span>
-                </div>
+                  <div className="flex items-center min-w-0 flex-1 pr-2">
+                    <span className="font-normal text-[11px] text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={visita.nombre}>
+                      {visita.nombre}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="font-mono font-bold text-slate-700 bg-[#f7fafc] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
+                      {visita.pax || 'INSP'}
+                    </span>
+                    <span className="text-slate-400 font-mono text-[11px] font-medium w-16 text-right">
+                      FAM TRIP
+                    </span>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
-            <p className="text-xs text-slate-400 py-3 italic text-center w-[350px] max-w-full mx-auto">No hay visitas de inspección registradas para hoy.</p>
+            <p className="text-xs text-slate-400 py-3 italic text-center">No hay visitas de inspección registradas para hoy.</p>
           )}
         </div>
 
@@ -659,31 +659,39 @@ export const CensoOcupacionView: React.FC<CensoOcupacionViewProps> = ({ data }) 
               Huéspedes Celebrando ({data.huespedesCelebrando.length})
             </h3>
           </div>
-          <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
-            {data.huespedesCelebrando.map((huesped, idx) => {
-              const formattedHab = huesped.habitacion
-                ? huesped.habitacion.toUpperCase().startsWith('HAB')
-                  ? huesped.habitacion
-                  : `HAB.${huesped.habitacion}`
-                : '-';
-              return (
-                <div
-                  key={idx}
-                  className="w-[350px] max-w-full h-[30px] mx-auto flex items-center justify-between text-xs px-3.5 hover:bg-pink-50/50 rounded-xl transition-all group border border-slate-100/90 hover:border-pink-200/80 bg-white shadow-2xs hover:shadow-xs"
-                >
-                  <span className="font-semibold text-slate-800 truncate pr-2.5 flex-1 text-left" title={huesped.nombre}>
-                    {huesped.nombre}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-md bg-slate-100 font-mono font-bold text-slate-700 shrink-0 text-center text-[11px] min-w-[72px] border border-slate-200/60">
-                    {formattedHab}
-                  </span>
-                  <span className="text-pink-700 font-mono text-[10px] font-semibold shrink-0 text-right w-20 truncate pl-1" title={huesped.motivo}>
-                    {huesped.motivo || 'CELEBRACIÓN'}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          {data.huespedesCelebrando.length > 0 ? (
+            <ul className="divide-y divide-slate-100/70 max-h-[380px] overflow-y-auto">
+              {data.huespedesCelebrando.map((huesped, idx) => {
+                const formattedHab = huesped.habitacion
+                  ? huesped.habitacion.toUpperCase().startsWith('HAB')
+                    ? huesped.habitacion
+                    : `HAB.${huesped.habitacion}`
+                  : '-';
+                return (
+                  <li
+                    key={idx}
+                    className="flex items-center justify-between text-xs px-[15px] font-normal hover:bg-amber-50/50 rounded transition-colors group border-b border-slate-100/70 last:border-b-0 h-[25px]"
+                  >
+                    <div className="flex items-center min-w-0 flex-1 pr-2">
+                      <span className="font-normal text-[11px] text-slate-800 truncate text-left group-hover:text-amber-950 transition-colors" title={huesped.nombre}>
+                        {huesped.nombre}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className="font-mono font-bold text-slate-700 bg-[#f7fafc] px-2 h-[20px] inline-flex items-center justify-center rounded text-[11px] min-w-[68px] text-center border border-slate-200/50">
+                        {formattedHab}
+                      </span>
+                      <span className="text-slate-400 font-mono text-[11px] font-medium w-20 truncate text-right" title={huesped.motivo}>
+                        {huesped.motivo || 'CELEBRACIÓN'}
+                      </span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="text-xs text-slate-400 py-3 italic text-center">No hay huéspedes celebrando registrados para hoy.</p>
+          )}
         </div>
       </div>
     </div>

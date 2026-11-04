@@ -148,13 +148,13 @@ export const CentrosConsumoView: React.FC<CentrosConsumoViewProps> = ({ data }) 
         </div>
       </div>
 
-      {/* Main Container: Column layout with side-by-side or stacked tables */}
+      {/* Main Container: Column layout with side-by-side (7:5 desktop ratio) or stacked tables */}
       <div className={`grid gap-6 items-start ${
-        activeType === 'all' ? 'grid-cols-1 2xl:grid-cols-2 print:grid-cols-2' : 'grid-cols-1'
+        activeType === 'all' ? 'grid-cols-1 2xl:grid-cols-12 print:grid-cols-2' : 'grid-cols-1'
       }`}>
         {/* COLUMN 1: RESTAURANTES TABLE */}
         {showRestaurantes && (
-          <div className="w-full">
+          <div className={`w-full ${activeType === 'all' ? '2xl:col-span-7 print:col-span-1' : ''}`}>
             {/* Header Banner */}
             <div className="bg-[#1a2536] text-white text-center py-2.5 px-4 font-black text-sm tracking-wider uppercase rounded-t-xl shadow-2xs">
               RESTAURANTES
@@ -165,22 +165,22 @@ export const CentrosConsumoView: React.FC<CentrosConsumoViewProps> = ({ data }) 
               <table className="w-full border-collapse text-xs">
                 <thead>
                   <tr className="bg-[#edf2f7] text-slate-800 font-black text-[10px] tracking-wide uppercase">
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[90px]">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[75px]">
                       CIERRES
                     </th>
-                    <th className="border border-slate-200 px-3 py-2 text-center min-w-[170px]">
+                    <th className="border border-slate-200 px-2.5 py-2 text-center min-w-[135px]">
                       RESTAURANTES
                     </th>
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[85px] bg-[#e65c00] text-white font-black">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[75px] bg-[#e65c00] text-white font-black">
                       DESAYUNO
                     </th>
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[85px] bg-[#009b8d] text-white font-black">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[75px] bg-[#009b8d] text-white font-black">
                       COMIDA
                     </th>
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[95px] bg-[#5b2182] text-white font-black">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[80px] bg-[#5b2182] text-white font-black">
                       CENA
                     </th>
-                    <th className="border border-slate-200 px-3 py-2 text-center min-w-[180px]">
+                    <th className="border border-slate-200 px-2.5 py-2 text-center min-w-[130px]">
                       OBSERVACIONES
                     </th>
                   </tr>
@@ -268,7 +268,7 @@ export const CentrosConsumoView: React.FC<CentrosConsumoViewProps> = ({ data }) 
 
         {/* COLUMN 2: BARES TABLE */}
         {showBares && (
-          <div className="w-full">
+          <div className={`w-full ${activeType === 'all' ? '2xl:col-span-5 print:col-span-1' : ''}`}>
             {/* Header Banner */}
             <div className="bg-[#1a2536] text-white text-center py-2.5 px-4 font-black text-sm tracking-wider uppercase rounded-t-xl shadow-2xs">
               BARES
@@ -279,16 +279,16 @@ export const CentrosConsumoView: React.FC<CentrosConsumoViewProps> = ({ data }) 
               <table className="w-full border-collapse text-xs">
                 <thead>
                   <tr className="bg-[#edf2f7] text-slate-800 font-black text-[10px] tracking-wide uppercase">
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[90px]">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[75px]">
                       CIERRES
                     </th>
-                    <th className="border border-slate-200 px-3 py-2 text-center min-w-[170px]">
+                    <th className="border border-slate-200 px-2.5 py-2 text-center min-w-[130px]">
                       BARES
                     </th>
-                    <th className="border border-slate-200 px-2.5 py-2 text-center whitespace-nowrap min-w-[110px]">
+                    <th className="border border-slate-200 px-2 py-2 text-center whitespace-nowrap min-w-[95px]">
                       HORARIO
                     </th>
-                    <th className="border border-slate-200 px-3 py-2 text-center min-w-[160px]">
+                    <th className="border border-slate-200 px-2.5 py-2 text-center min-w-[125px]">
                       OBSERVACIONES
                     </th>
                   </tr>

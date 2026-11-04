@@ -204,50 +204,92 @@ export const TarifasView: React.FC<TarifasViewProps> = ({ data }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-6">
             {/* Precios Up Grade x Noche */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
-              <div className="pb-3 border-b border-slate-100 mb-4">
-                <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                  Precios Up Grade x Noche
-                </h3>
-                <p className="text-xs text-slate-500">Servicios incluidos para 2 personas por habitación</p>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
+                    Precios Up Grade x Noche
+                  </h3>
+                  <p className="text-xs text-slate-500">Servicios incluidos para 2 personas por habitación</p>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-[#1a73e8] border border-blue-200/70">
+                  {data.tarifas.upgrades.length} opciones
+                </span>
               </div>
 
-              <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+              <ul className="divide-y divide-slate-100/80 max-h-[460px] overflow-y-auto pr-1">
                 {data.tarifas.upgrades.map((upg, idx) => (
-                  <div key={idx} className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs hover:border-[#1a73e8]/30 transition-colors">
-                    <div>
-                      <span className="font-bold text-slate-900 block">{upg.categoriaOrigenDestino}</span>
-                      <span className="text-[11px] text-slate-400">{upg.seccion}</span>
+                  <li
+                    key={idx}
+                    className="py-2.5 px-[15px] flex items-center justify-between gap-3 text-xs hover:bg-blue-50/30 rounded-lg transition-colors group"
+                  >
+                    <div className="min-w-0 flex-1 pr-2">
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1a73e8] shrink-0" />
+                        <span
+                          className="font-medium text-slate-900 text-xs sm:text-[13px] truncate group-hover:text-blue-950 transition-colors"
+                          title={upg.categoriaOrigenDestino}
+                        >
+                          {upg.categoriaOrigenDestino}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-slate-400 pl-3.5 block truncate">
+                        {upg.seccion}
+                      </span>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 font-black text-slate-900">
-                      {upg.precio} MXN
-                    </span>
-                  </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="font-mono font-bold text-slate-800 bg-[#f7fafc] px-2.5 py-1 rounded text-xs border border-slate-200/60 shadow-2xs">
+                        {upg.precio} <span className="text-[10px] text-slate-500 font-normal">MXN</span>
+                      </span>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* Precios Day Pass MXN */}
             <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-5">
-              <div className="pb-3 border-b border-slate-100 mb-4">
-                <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
-                  Precios Day Pass (MXN)
-                </h3>
-                <p className="text-xs text-slate-500">Pases de día, noche, cancunenses y extensiones de horario</p>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-[13px] font-['Montserrat',sans-serif]">
+                    Precios Day Pass (MXN)
+                  </h3>
+                  <p className="text-xs text-slate-500">Pases de día, noche, cancunenses y extensiones de horario</p>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200/70">
+                  {data.tarifas.dayPass.length} tarifas
+                </span>
               </div>
 
-              <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+              <ul className="divide-y divide-slate-100/80 max-h-[460px] overflow-y-auto pr-1">
                 {data.tarifas.dayPass.map((dp, idx) => (
-                  <div key={idx} className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs hover:border-[#1a73e8]/30 transition-colors">
-                    <div>
-                      <span className="font-bold text-slate-900 block">{dp.concepto}</span>
-                      <span className="text-[11px] text-[#1a73e8] font-medium">{dp.categoria}</span>
+                  <li
+                    key={idx}
+                    className="py-2.5 px-[15px] flex items-center justify-between gap-3 text-xs hover:bg-amber-50/30 rounded-lg transition-colors group"
+                  >
+                    <div className="min-w-0 flex-1 pr-2">
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span
+                          className="font-medium text-slate-900 text-xs sm:text-[13px] truncate group-hover:text-amber-950 transition-colors"
+                          title={dp.concepto}
+                        >
+                          {dp.concepto}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-[#0369a1] font-medium pl-3.5 block truncate">
+                        {dp.categoria}
+                      </span>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 font-black text-slate-900">
-                      {dp.precio}
-                    </span>
-                  </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="font-mono font-bold text-slate-800 bg-[#f7fafc] px-2.5 py-1 rounded text-xs border border-slate-200/60 shadow-2xs">
+                        {dp.precio}
+                      </span>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>

@@ -109,46 +109,48 @@ export const EventosView: React.FC<EventosViewProps> = ({ data }) => {
               </span>
             </div>
 
-            {/* Lista de actividades de hoy */}
-            <div className="space-y-2">
+            {/* Lista de actividades de hoy (formato lista continua, sin cuadros) */}
+            <ul className="divide-y divide-slate-100/80">
               {eventosHoy.length > 0 ? (
                 eventosHoy.map((evento, idx) => (
-                  <div
+                  <li
                     key={idx}
-                    className="h-[60px] min-h-[60px] px-4 rounded-xl border border-[#e2e9f0] hover:border-emerald-200 bg-white hover:bg-emerald-50/20 transition-all flex items-center justify-between gap-3 shadow-2xs hover:shadow-xs group"
+                    className="py-2.5 px-[15px] flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-emerald-50/30 rounded-lg transition-colors group"
                   >
-                    <div className="flex-1 min-w-0 pr-2">
-                      <h4 className="font-bold text-slate-900 text-xs sm:text-sm font-['Montserrat',sans-serif] group-hover:text-emerald-950 transition-colors truncate">
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                      <span
+                        className="font-medium text-slate-900 text-xs sm:text-[13px] truncate group-hover:text-emerald-950 transition-colors"
+                        title={evento.nombre}
+                      >
                         {evento.nombre}
-                      </h4>
-                      <div className="flex items-center gap-x-4 text-xs text-slate-500 truncate mt-0.5">
-                        <span className="flex items-center gap-1.5 text-slate-700 font-medium truncate">
-                          <MapPin className="w-3.5 h-3.5 text-[#0369a1] shrink-0" />
-                          <span className="truncate">Lugar: <strong className="text-slate-800">{evento.lugar}</strong></span>
-                        </span>
-                        <span className="flex items-center gap-1.5 font-mono text-slate-600 shrink-0">
-                          <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                          <span>Horario: {evento.horario}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-sky-50 text-[#0369a1] border border-sky-100 flex items-center gap-1.5 shadow-2xs">
-                        <Users className="w-3.5 h-3.5" />
-                        {evento.pax || 'TBA'}
                       </span>
                     </div>
-                  </div>
+
+                    <div className="flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-1 sm:gap-3 shrink-0 pl-4.5 sm:pl-0 text-xs">
+                      <span className="flex items-center gap-1.5 text-slate-600 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-[#0369a1] shrink-0" />
+                        <span className="text-slate-700">{evento.lugar}</span>
+                      </span>
+                      <span className="flex items-center gap-1.5 font-mono text-slate-500">
+                        <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                        <span>{evento.horario}</span>
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#f7fafc] text-slate-700 border border-slate-200/60 shadow-2xs flex items-center gap-1 shrink-0">
+                        <Users className="w-3.5 h-3.5 text-slate-400" />
+                        <span>{evento.pax || 'TBA'}</span>
+                      </span>
+                    </div>
+                  </li>
                 ))
               ) : (
-                <div className="text-center py-8 px-4 bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
-                  <p className="text-xs text-slate-400 font-medium">
-                    {searchTerm ? 'No se encontraron actividades de hoy con esa búsqueda.' : 'No hay actividades registradas para hoy.'}
-                  </p>
-                </div>
+                <li className="text-center py-6 px-4 text-xs text-slate-400 font-medium italic list-none">
+                  {searchTerm
+                    ? 'No se encontraron actividades de hoy con esa búsqueda.'
+                    : 'No hay actividades registradas para hoy.'}
+                </li>
               )}
-            </div>
+            </ul>
           </div>
 
           {/* 2. SECCIÓN: Actividades de Mañana en forma de lista */}
@@ -172,46 +174,48 @@ export const EventosView: React.FC<EventosViewProps> = ({ data }) => {
               </span>
             </div>
 
-            {/* Lista de actividades de mañana */}
-            <div className="space-y-2">
+            {/* Lista de actividades de mañana (formato lista continua, sin cuadros) */}
+            <ul className="divide-y divide-slate-100/80">
               {eventosManana.length > 0 ? (
                 eventosManana.map((evento, idx) => (
-                  <div
+                  <li
                     key={idx}
-                    className="h-[60px] min-h-[60px] px-4 rounded-xl border border-[#e2e9f0] hover:border-sky-200 bg-white hover:bg-sky-50/20 transition-all flex items-center justify-between gap-3 shadow-2xs hover:shadow-xs group"
+                    className="py-2.5 px-[15px] flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-sky-50/30 rounded-lg transition-colors group"
                   >
-                    <div className="flex-1 min-w-0 pr-2">
-                      <h4 className="font-bold text-slate-900 text-xs sm:text-sm font-['Montserrat',sans-serif] group-hover:text-[#0369a1] transition-colors truncate">
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0" />
+                      <span
+                        className="font-medium text-slate-900 text-xs sm:text-[13px] truncate group-hover:text-[#0369a1] transition-colors"
+                        title={evento.nombre}
+                      >
                         {evento.nombre}
-                      </h4>
-                      <div className="flex items-center gap-x-4 text-xs text-slate-500 truncate mt-0.5">
-                        <span className="flex items-center gap-1.5 text-slate-700 font-medium truncate">
-                          <MapPin className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                          <span className="truncate">Lugar: <strong className="text-slate-800">{evento.lugar}</strong></span>
-                        </span>
-                        <span className="flex items-center gap-1.5 font-mono text-slate-600 shrink-0">
-                          <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                          <span>Horario: {evento.horario}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-                        <Users className="w-3.5 h-3.5" />
-                        {evento.pax || 'TBA'}
                       </span>
                     </div>
-                  </div>
+
+                    <div className="flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-1 sm:gap-3 shrink-0 pl-4.5 sm:pl-0 text-xs">
+                      <span className="flex items-center gap-1.5 text-slate-600 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                        <span className="text-slate-700">{evento.lugar}</span>
+                      </span>
+                      <span className="flex items-center gap-1.5 font-mono text-slate-500">
+                        <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <span>{evento.horario}</span>
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#f7fafc] text-slate-700 border border-slate-200/60 shadow-2xs flex items-center gap-1 shrink-0">
+                        <Users className="w-3.5 h-3.5 text-slate-400" />
+                        <span>{evento.pax || 'TBA'}</span>
+                      </span>
+                    </div>
+                  </li>
                 ))
               ) : (
-                <div className="text-center py-8 px-4 bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
-                  <p className="text-xs text-slate-400 font-medium">
-                    {searchTerm ? 'No se encontraron actividades de mañana con esa búsqueda.' : 'No hay actividades registradas para mañana.'}
-                  </p>
-                </div>
+                <li className="text-center py-6 px-4 text-xs text-slate-400 font-medium italic list-none">
+                  {searchTerm
+                    ? 'No se encontraron actividades de mañana con esa búsqueda.'
+                    : 'No hay actividades registradas para mañana.'}
+                </li>
               )}
-            </div>
+            </ul>
           </div>
         </div>
 
